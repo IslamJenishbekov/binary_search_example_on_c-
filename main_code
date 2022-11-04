@@ -1,3 +1,5 @@
+//C++
+//04.11.2022
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -8,11 +10,19 @@ using namespace std;
 string binary_search(vector <int> lst_values, int num_for_search) {
 	sort(lst_values.begin(), lst_values.end()); //sorting our vector
 	
+	if (num_for_search<lst_values[0]){ //checking that the num for search generally lies in that interval 
+		return "NO";
+	}
+	else if (num_for_search>lst_values[lst_values.size()-1]){
+		return "NO";
+	}
+	
 	int left_border, right_border; //borders of search
 	int index_search_element;
-	int counter=1; // analog of logarifm in this code
+	int counter=1; // analog of logarithm in this code
 	right_border = lst_values.size(); // at first our right border = length of our vector
 	left_border = 0; //left border = 0
+
 	
 	for (int i=1; counter<right_border; i++){
 		index_search_element = (right_border+left_border)/2+1; //index for search element is equal average of sum their borders 
@@ -35,8 +45,8 @@ string binary_search(vector <int> lst_values, int num_for_search) {
 int main() { //here is written a simple example of looking for a age of student
 	vector <int> lst_ages_students(100);
 	int age_student;
-	for (int i=0; i<10000; i++){
-		age_student = rand()%100000;
+	for (int i=0; i<100; i++){
+		age_student = rand()%100;
 		lst_ages_students[i] = age_student;
 	}
 	

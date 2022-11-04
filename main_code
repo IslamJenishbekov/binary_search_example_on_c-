@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <string>
+using namespace std;
+
+string binary_search(vector <int> lst_values, int num_for_search) {
+	sort(lst_values.begin(), lst_values.end()); //sorting our vector
+	
+	int left_border, right_border; //borders of search
+	int index_search_element;
+	int counter=1; // analog of logarifm in this code
+	right_border = lst_values.size(); // at first our right border = length of our vector
+	left_border = 0; //left border = 0
+	
+	for (int i=1; counter<right_border; i++){
+		index_search_element = (right_border+left_border)/2+1; //index for search element is equal average of sum their borders 
+		if (num_for_search==lst_values[index_search_element]){
+			return "YES";
+		}
+		
+		else if (num_for_search>lst_values[index_search_element]){
+			left_border = index_search_element;
+		}
+		
+		else if (num_for_search<lst_values[index_search_element]){
+			right_border = index_search_element;
+		}
+		counter *= 2; // analog of logarithm;
+	}
+	return "NO";
+}
+
+int main() { //here is written a simple example of looking for a age of student
+	vector <int> lst_ages_students(100);
+	int age_student;
+	for (int i=0; i<10000; i++){
+		age_student = rand()%100000;
+		lst_ages_students[i] = age_student;
+	}
+	
+	int searchable_age;
+	cin >> searchable_age;
+	
+	string condition;
+	condition = binary_search(lst_ages_students, searchable_age);
+	cout  << condition;
+	
+	return 0;
+}

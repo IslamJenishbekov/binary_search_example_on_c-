@@ -1,4 +1,4 @@
-# binary_search_example_on_c-
+# binary_search_example_on_c++
 This code realize of idea binary search on C++
 
 At first we include 5 header files: <cstdlib> is need for get random number that we will need in building our example of vector, <algorithm> help us to sort our vector that has just int data type values. 

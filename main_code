@@ -8,35 +8,35 @@
 #include <string>
 using namespace std;
 
-string binary_search(vector <int> lst_values, int num_for_search) {
-	sort(lst_values.begin(), lst_values.end()); //sorting our vector
+string binarySearch(vector <int> lstValues, int numForSearch) {
+	sort(lstValues.begin(), lstValues.end()); //sorting our vector
 	
-	if (num_for_search<lst_values[0]){ //checking that the num for search generally lies in that interval 
+	if (numForSearch<lstValues[0]){ //checking that the num for search generally lies in that interval 
 		return "NO";
 	}
-	else if (num_for_search>lst_values[lst_values.size()-1]){
+	else if (numForSearch>lstValues[lstValues.size()-1]){
 		return "NO";
 	}
 	
-	int left_border, right_border; //borders of search
-	int index_search_element;
+	int leftBorder, rightBorder; //borders of search
+	int indexSearchElement;
 	int counter=1; // analog of logarithm in this code
-	right_border = lst_values.size(); // at first our right border = length of our vector
-	left_border = 0; //left border = 0
+	rightBorder = lstValues.size(); // at first our right border = length of our vector
+	leftBorder = 0; //left border = 0
 
 	
-	for (int i=1; counter<=lst_values.size(); i++){
-		index_search_element = (right_border+left_border)/2; //index for search element is equal average of sum their borders 
-		if (num_for_search==lst_values[index_search_element]){
+	for (int i=1; counter<=lstValues.size(); i++){
+		indexSearchElement = (rightBorder+leftBorder)/2; //index for search element is equal average of sum their borders 
+		if (numForSearch==lstValues[indexSearchElement]){
 			return "YES";
 		}
 		
-		else if (num_for_search>lst_values[index_search_element]){
-			left_border = index_search_element;
+		else if (numForSearch>lstValues[indexSearchElement]){
+			leftBorder = indexSearchElement;
 		}
 		
-		else if (num_for_search<lst_values[index_search_element]){
-			right_border = index_search_element;
+		else if (numForSearch<lstValues[indexSearchElement]){
+			rightBorder = indexSearchElement;
 		}
 		counter *= 2; // analog of logarithm;
 	}
@@ -44,23 +44,22 @@ string binary_search(vector <int> lst_values, int num_for_search) {
 }
 
 int main() { //here is written a simple example of looking for a age of student
-	vector <int> lst_ages_students(1000);
-	int age_student;
+	vector <int> lstAgesStudents(1000);
+	int ageStudent;
 	
 	srand(time(NULL)); //here you can put to vector whatever you want
 	for (int i=0; i<1000; i++){
-		age_student = rand()%1000;
-		lst_ages_students[i] = age_student;
+		ageStudent = rand()%1000;
+		lstAgesStudents[i] = ageStudent;
 	}
 	
-	int searchable_age;
+	int searchableAge;
 	cout << "Input age for search: ";
-	cin >> searchable_age;
+	cin >> searchableAge;
 	
 	
-	sort(lst_ages_students.begin(), lst_ages_students.end());
 	string condition;
-	condition = binary_search(lst_ages_students, searchable_age);
+	condition = binarySearch(lstAgesStudents, searchableAge);
 	cout  << condition;
 	
 	return 0;

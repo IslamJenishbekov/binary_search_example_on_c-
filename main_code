@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
+#include <ctime>
 #include <string>
 using namespace std;
 
@@ -24,8 +25,8 @@ string binary_search(vector <int> lst_values, int num_for_search) {
 	left_border = 0; //left border = 0
 
 	
-	for (int i=1; counter<right_border; i++){
-		index_search_element = (right_border+left_border)/2+1; //index for search element is equal average of sum their borders 
+	for (int i=1; counter<=lst_values.size(); i++){
+		index_search_element = (right_border+left_border)/2; //index for search element is equal average of sum their borders 
 		if (num_for_search==lst_values[index_search_element]){
 			return "YES";
 		}
@@ -43,16 +44,21 @@ string binary_search(vector <int> lst_values, int num_for_search) {
 }
 
 int main() { //here is written a simple example of looking for a age of student
-	vector <int> lst_ages_students(100);
+	vector <int> lst_ages_students(1000);
 	int age_student;
-	for (int i=0; i<100; i++){
-		age_student = rand()%100;
+	
+	srand(time(NULL)); //here you can put to vector whatever you want
+	for (int i=0; i<1000; i++){
+		age_student = rand()%1000;
 		lst_ages_students[i] = age_student;
 	}
 	
 	int searchable_age;
+	cout << "Input age for search: ";
 	cin >> searchable_age;
 	
+	
+	sort(lst_ages_students.begin(), lst_ages_students.end());
 	string condition;
 	condition = binary_search(lst_ages_students, searchable_age);
 	cout  << condition;
